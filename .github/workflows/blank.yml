@@ -35,7 +35,7 @@ jobs:
       run: |
         cd ../
         pwd
-        cd bio_electronic_static 
+        cd bio_electronic_static_adit 
         ls
         shuffledns -w adit_dnsbrute_static_wordlist.txt -d allegro.pl.allegrosandbox.pl -r resolvers -m massdns/bin/massdns -o output.txt
         
