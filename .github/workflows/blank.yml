@@ -37,7 +37,7 @@ jobs:
         pwd
         cd bio_electronic_static_adit 
         ls
-        shuffledns -w adit_dnsbrute_static_wordlist.txt -d allegro.pl.allegrosandbox.pl -r .resolvers -m massdns/bin/massdns -o output.txt
+        shuffledns -w adit_dnsbrute_static_wordlist.txt -d pl.allegro.pl.allegroimg.allegrosandbox.pl -r .resolvers -m massdns/bin/massdns -o output.txt
         
     - name: Upload output as artifact
       uses: actions/upload-artifact@v2
