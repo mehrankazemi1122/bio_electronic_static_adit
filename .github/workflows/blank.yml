@@ -53,4 +53,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: command-output
-        path: outpufiles
+        path: outputfiles
