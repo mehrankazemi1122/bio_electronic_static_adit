@@ -48,7 +48,7 @@ jobs:
         cat subdomains-assetnote-merged.txt | wc -l
         mkdir outputfiles
         shuffledns -w subdomains-assetnote-merged.txt -d goparrot.ai -r resolvers.txt -m massdns/bin/massdns -o output.txt
-        cat output.txt | while read line;do shuffledns -w subdomains-assetnote-merged.txt -d $line -r resolvers.txt -m massdns/bin/massdns -o $line_output.txt -silent;cp $line_output.txt outputfiles;done
+        cat output.txt | while read line;do shuffledns -w subdomains-assetnote-merged.txt -d $line -r .resolvers -m massdns/bin/massdns -o $line_output.txt -silent;cp $line_output.txt outputfiles;done
     - name: Upload output as artifact
       uses: actions/upload-artifact@v2
       with:
