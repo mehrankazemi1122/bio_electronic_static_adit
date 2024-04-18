@@ -36,7 +36,7 @@ jobs:
       run: |
         cd ../
         pwd
-        cd bio_electronic_static 
+        cd bio_electronic_static_adit
         ls
         sudo apt-get install -y crunch
         crunch 1 4 abcdefghijklmnopqrstuvwxyz1234567890 > 4_chars.txt
