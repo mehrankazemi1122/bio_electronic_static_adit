@@ -49,8 +49,15 @@ jobs:
         mkdir outputfiles
         shuffledns -w subdomains-assetnote-merged.txt -d goparrot.ai -r .resolvers -m massdns/bin/massdns -o output.txt
         cat output.txt | while read line;do shuffledns -w subdomains-assetnote-merged.txt -d $line -r .resolvers -m massdns/bin/massdns -o $line_output.txt -silent;cp $line_output.txt outputfiles;done
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Zip the folder
+      run: zip -r outputfiles.zip outputfiles/
+      
     - name: Upload output as artifact
       uses: actions/upload-artifact@v2
       with:
         name: command-output
-        path: outputfiles
+        path: outputfiles.zip
