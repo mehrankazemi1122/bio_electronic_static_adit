@@ -46,18 +46,15 @@ jobs:
         curl -s https://wordlists-cdn.assetnote.io/data/automated/httparchive_subdomains_2024_01_28.txt -o all_subs.txt
         cat best-dns-wordlist.txt 2m-subdomains.txt 4_chars.txt all_subs.txt all | sort -u > subdomains-assetnote-merged.txt
         cat subdomains-assetnote-merged.txt | wc -l
-        mkdir outputfiles
-        shuffledns -w subdomains-assetnote-merged.txt -d goparrot.ai -r .resolvers -m massdns/bin/massdns -o output.txt
-        cat output.txt | while read line;do shuffledns -w subdomains-assetnote-merged.txt -d $line -r .resolvers -m massdns/bin/massdns -o $line_output.txt -silent;cp $line_output.txt outputfiles;done
+        touch outputfiles.txt
+        shuffledns -w subdomains-assetnote-merged.txt -d verisign.com -r .resolvers -m massdns/bin/massdns -o output.txt
+        cat output.txt | while read line;do shuffledns -w subdomains-assetnote-merged.txt -d $line -r .resolvers -m massdns/bin/massdns -silent >> outputfiles.txt;cat outputfiles.txt;done
 
     - name: Install zip
       run: sudo apt-get install zip
-
-    - name: Zip the folder
-      run: zip -r outputfiles.zip outputfiles/
       
     - name: Upload output as artifact
       uses: actions/upload-artifact@v2
       with:
         name: command-output
-        path: outputfiles.zip
+        path: outputfiles.txt
